@@ -1,32 +1,36 @@
-# React + TypeScript + Vite
+# AptPal Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The single-page web client for AptPal, delivering rental discovery, interactive OpenStreetMap exploration, real-time messaging, and multi-step listing workflows.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Framework & Runtime:** React 19 (`19.3.1`) with TypeScript
+- **Build Tool & Dev Server:** Vite 8 (`@vitejs/plugin-react`)
+- **Routing:** React Router v7 (`react-router-dom`)
+- **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`, `tailwindcss`)
+- **Design System & Palette:** Synchronized Figma design tokens (`primary`, `secondary`, `tertiary`, `quaternary`, `grey`)
+- **Theme Support:** Triple-theme mode (`light`, `dark`, `system`) powered by `ThemeContext` and CSS custom variables
+- **Interactive Maps:** Leaflet & OpenStreetMap (`leaflet`, `@types/leaflet`) for map search, coordinate picking, and listing pins
+- **Icons:** Lucide React (`lucide-react`)
+- **Networking & Real-Time:**
+  - Axios for REST API calls
+  - Native WebSockets for real-time Django Channels chat (message push, typing indicators, read receipts)
+- **Utilities:** `clsx`, `tailwind-merge`
+- **Linting & Code Quality:** Oxlint (`oxlint`), TypeScript strict checks
+- **Package Manager:** `npm`
 
-## React Compiler
+## Core Commands
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Install dependencies
+npm install
 
-## Expanding the Oxlint configuration
+# Start development server
+npm run dev
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+# Type-check and production build
+npm run build
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+# Run linter
+npm run lint
 ```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.

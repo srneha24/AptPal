@@ -91,11 +91,24 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
 
 ---
 
+## Notion & Project Tracking Rules
+
+- **Consult Notion Sources for Insights:** Agents MUST ALWAYS consult the two Notion resources for project requirements, architecture context, and roadmaps:
+  1. **AptPal Plans** (Page ID: `41961011-8983-8024-b16f-d3ce6b64e7e2`, [Notion Page](https://app.notion.com/p/4196101189838024b16fd3ce6b64e7e2)) — feature specs, user roles, security checks, design tokens.
+  2. **AptPal Roadmap** (Database ID: `41961011-8983-80b6-9737-fb902fc92d36`, [Notion Database](https://app.notion.com/p/41961011898380b69737fb902fc92d36)) — official project tracker and ticket board.
+- **Maintain Roadmap Ticket Statuses:**
+  - Before starting work on any feature or task, **move the corresponding ticket in the AptPal Roadmap database to `In progress`**.
+  - When the task is verified and finished, **move the ticket to `Completed`**.
+- **README Files Policy:** DO NOT modify, generate, or update any `README.md` files (root, `/backend`, `/frontend`, `/mobile`) unless the user explicitly instructs you to do so.
+- **Test Execution Policy:** Automated tests (`python manage.py test`, npm test, etc.) MUST ONLY be executed when the user explicitly instructs it. Do not run test suites autonomously during pre-commit checks or development unless requested.
+
+---
+
 ## Git & PR Hygiene
 
 - **Branch naming:** `feat/<feature>`, `fix/<bug>`, `refactor/<scope>`.
 - **Pre-commit verification checklist:**
-  1. Backend: `cd backend && uv run python manage.py check && uv run python manage.py test`
+  1. Backend: `cd backend && uv run python manage.py check` (run `test` ONLY if user explicitly requested)
   2. Frontend: `cd frontend && npm run build && npm run lint`
   3. Mobile: `cd mobile && npx tsc --noEmit`
 - Commit messages: Imperative and scoped (e.g. `feat(mobile): add rental search filter card`).
