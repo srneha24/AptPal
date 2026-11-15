@@ -1,0 +1,167 @@
+/* AptPal Django Admin Theme
+   Matches Figma ColorPalette (Primary #1F0A57, Secondary #510782, Tertiary #B32E5F, Quaternary #CB1A7D)
+*/
+
+:root {
+  --primary: #1F0A57;
+  --secondary: #510782;
+  --accent: #CB1A7D;
+  --primary-fg: #ffffff;
+
+  --body-fg: #1D1C20;
+  --body-bg: #F8F7FA;
+  --body-quiet-color: #7B777E;
+  --body-medium-color: #4D4952;
+  --body-loud-color: #1D1C20;
+
+  --header-color: #ffffff;
+  --header-branding-color: #ffffff;
+  --header-bg: #1F0A57;
+  --header-link-color: #EAE6F4;
+
+  --breadcrumbs-fg: #EAE6F4;
+  --breadcrumbs-link-fg: #ffffff;
+  --breadcrumbs-bg: #341B7F;
+
+  --link-fg: #510782;
+  --link-hover-color: #B32E5F;
+  --link-selected-fg: #CB1A7D;
+
+  --hairline-color: #E5E2EC;
+  --border-color: #D5D4D6;
+
+  --button-fg: #ffffff;
+  --button-bg: #510782;
+  --button-hover-bg: #67149B;
+
+  --default-button-bg: #1F0A57;
+  --default-button-hover-bg: #341B7F;
+
+  --selected-bg: #EAE6F4;
+  --selected-row: #FCE7F0;
+
+  --object-tools-fg: #ffffff;
+  --object-tools-bg: #510782;
+  --object-tools-hover-bg: #67149B;
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] {
+  --primary: #510782;
+  --secondary: #1F0A57;
+  --accent: #CB1A7D;
+  --primary-fg: #F1F0F1;
+
+  --body-fg: #F1F0F1;
+  --body-bg: #1D1C20;
+  --body-quiet-color: #99969C;
+  --body-medium-color: #B7B5B9;
+  --body-loud-color: #ffffff;
+
+  --header-color: #ffffff;
+  --header-branding-color: #ffffff;
+  --header-bg: #1F0A57;
+  --header-link-color: #EAE6F4;
+
+  --breadcrumbs-fg: #D7B7EB;
+  --breadcrumbs-link-fg: #F1F0F1;
+  --breadcrumbs-bg: #341B7F;
+
+  --link-fg: #BD89DE;
+  --link-hover-color: #F18EBA;
+  --link-selected-fg: #CB1A7D;
+
+  --hairline-color: #2F2A38;
+  --border-color: #4D4952;
+
+  --button-fg: #ffffff;
+  --button-bg: #67149B;
+  --button-hover-bg: #8A2DC5;
+
+  --default-button-bg: #510782;
+  --default-button-hover-bg: #67149B;
+
+  --darkened-bg: #141316;
+  --selected-bg: #2B1647;
+  --selected-row: #3B1238;
+
+  --object-tools-fg: #ffffff;
+  --object-tools-bg: #67149B;
+  --object-tools-hover-bg: #8A2DC5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --primary: #510782;
+    --secondary: #1F0A57;
+    --accent: #CB1A7D;
+    --primary-fg: #F1F0F1;
+
+    --body-fg: #F1F0F1;
+    --body-bg: #1D1C20;
+    --body-quiet-color: #99969C;
+    --body-medium-color: #B7B5B9;
+    --body-loud-color: #ffffff;
+
+    --header-color: #ffffff;
+    --header-branding-color: #ffffff;
+    --header-bg: #1F0A57;
+    --header-link-color: #EAE6F4;
+
+    --breadcrumbs-fg: #D7B7EB;
+    --breadcrumbs-link-fg: #F1F0F1;
+    --breadcrumbs-bg: #341B7F;
+
+    --link-fg: #BD89DE;
+    --link-hover-color: #F18EBA;
+    --link-selected-fg: #CB1A7D;
+
+    --hairline-color: #2F2A38;
+    --border-color: #4D4952;
+
+    --button-fg: #ffffff;
+    --button-bg: #67149B;
+    --button-hover-bg: #8A2DC5;
+
+    --default-button-bg: #510782;
+    --default-button-hover-bg: #67149B;
+
+    --darkened-bg: #141316;
+    --selected-bg: #2B1647;
+    --selected-row: #3B1238;
+
+    --object-tools-fg: #ffffff;
+    --object-tools-bg: #67149B;
+    --object-tools-hover-bg: #8A2DC5;
+  }
+}
+
+/* Custom Admin Polish */
+#header {
+  border-bottom: 2px solid #510782;
+  box-shadow: 0 1px 3px rgba(31, 10, 87, 0.15);
+}
+
+.module h2, .module caption, .inline-group h2 {
+  background: #341B7F;
+  color: #ffffff;
+}
+
+div.breadcrumbs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.15s ease-in-out;
+}
+
+#changelist table thead th {
+  background: var(--body-bg);
+}
+
+#changelist-filter h2 {
+  background: #1F0A57;
+  color: #ffffff;
+}
