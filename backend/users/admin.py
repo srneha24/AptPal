@@ -1,0 +1,54 @@
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+
+from .models import AppUser, User
+
+
+@admin.register(User)
+class CustomUserAdmin(UserAdmin):
+    ordering = ("email",)
+    list_display = ("email", "first_name", "last_name", "is_staff", "is_active")
+    search_fields = ("email", "first_name", "last_name")
+
+    fieldsets = (
+        (None, {"fields": ("email", "password")}),
+        ("Personal info", {"fields": ("first_name", "last_name")}),
+        (
+            "Permissions",
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                )
+            },
+        ),
+        ("Important dates", {"fields": ("last_login", "date_joined")}),
+    )
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("email", "password1", "password2"),
+            },
+        ),
+    )
+    readonly_fields = ("last_login", "date_joined")
+
+
+@admin.register(AppUser)
+class AppUserAdmin(admin.ModelAdmin):
+    list_display = (
+        "user",
+        "phone_number",
+        "phone_verified",
+        "status",
+        "verification_status",
+        "verified_by",
+    )
+    list_filter = ("status", "phone_verified", "email_verified", "verification_status")
+    search_fields = ("user__email", "phone_number")
+    readonly_fields = ("created_at", "updated_at")

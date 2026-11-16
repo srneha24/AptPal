@@ -31,7 +31,7 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
 # Application definition
 
-INSTALLED_APPS = [
+DEFAULT_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -39,6 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+PROJECT_APPS = [
+    "users",
+    "posts",
+    "bookings",
+]
+
+INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -68,6 +76,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "aptpal.wsgi.application"
+
+AUTH_USER_MODEL = "users.User"
 
 
 # Database

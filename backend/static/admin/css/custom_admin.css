@@ -2,6 +2,7 @@
    Matches Figma ColorPalette (Primary #1F0A57, Secondary #510782, Tertiary #B32E5F, Quaternary #CB1A7D)
 */
 
+html[data-theme="light"],
 :root {
   --primary: #1F0A57;
   --secondary: #510782;
