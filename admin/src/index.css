@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-100: #F1EFFD;
+  --color-primary-200: #CDC6F9;
+  --color-primary-300: #A799F4;
+  --color-primary-400: #836AEF;
+  --color-primary-500: #6234E5;
+  --color-primary-600: #3F1B9F;
+  --color-primary-700: #1F0A57;
+  --color-primary-base: #1F0A57;
+
+  --color-secondary-100: #F1E9FE;
+  --color-secondary-200: #D4B7FD;
+  --color-secondary-300: #BB83FC;
+  --color-secondary-400: #A642FA;
+  --color-secondary-500: #8011C9;
+  --color-secondary-600: #510782;
+  --color-secondary-700: #270242;
+  --color-secondary-base: #510782;
+
+  --color-tertiary-100: #FCEDF0;
+  --color-tertiary-200: #F6C7D2;
+  --color-tertiary-300: #F090AA;
+  --color-tertiary-400: #EB4882;
+  --color-tertiary-500: #B32E5F;
+  --color-tertiary-600: #791C3E;
+  --color-tertiary-700: #440C20;
+  --color-tertiary-base: #B32E5F;
+
+  --color-quaternary-100: #FDD3E2;
+  --color-quaternary-200: #FB98C1;
+  --color-quaternary-300: #F94BA2;
+  --color-quaternary-400: #CB1A7D;
+  --color-quaternary-500: #8E0F56;
+  --color-quaternary-600: #550532;
+  --color-quaternary-700: #290115;
+  --color-quaternary-base: #CB1A7D;
+
+  --color-grey-100: #F1F0F1;
+  --color-grey-200: #CCCBCF;
+  --color-grey-300: #A6A4AB;
+  --color-grey-400: #817E88;
+  --color-grey-500: #5D5B65;
+  --color-grey-600: #3C3A41;
+  --color-grey-700: #1D1C20;
+
+  --color-theme-bg: var(--theme-bg);
+  --color-theme-surface: var(--theme-surface);
+  --color-theme-surface-raised: var(--theme-surface-raised);
+  --color-theme-border: var(--theme-border);
+  --color-theme-border-subtle: var(--theme-border-subtle);
+  --color-theme-text-primary: var(--theme-text-primary);
+  --color-theme-text-secondary: var(--theme-text-secondary);
+  --color-theme-text-muted: var(--theme-text-muted);
+  --color-theme-brand-primary: var(--theme-brand-primary);
+  --color-theme-brand-content: var(--theme-brand-content);
+  --color-theme-accent: var(--theme-accent);
+  --color-theme-tint: var(--theme-tint);
+}
+
+:root {
+  color-scheme: light;
+  --theme-bg: #F1F0F1;
+  --theme-surface: #FFFFFF;
+  --theme-surface-raised: #FFFFFF;
+  --theme-border: #CCCBCF;
+  --theme-border-subtle: #E5E4E8;
+  --theme-text-primary: #1D1C20;
+  --theme-text-secondary: #5D5B65;
+  --theme-text-muted: #817E88;
+  --theme-brand-primary: #1F0A57;
+  --theme-brand-content: #FFFFFF;
+  --theme-accent: #6234E5;
+  --theme-tint: #F1EFFD;
+}
+
+html.dark {
+  color-scheme: dark;
+  --theme-bg: #131118;
+  --theme-surface: #1D1C20;
+  --theme-surface-raised: #28252F;
+  --theme-border: #3C3A41;
+  --theme-border-subtle: #2A2830;
+  --theme-text-primary: #F1F0F1;
+  --theme-text-secondary: #CCCBCF;
+  --theme-text-muted: #A6A4AB;
+  --theme-brand-primary: #A799F4;
+  --theme-brand-content: #1F0A57;
+  --theme-accent: #836AEF;
+  --theme-tint: #231B3A;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--theme-bg);
+  color: var(--theme-text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}

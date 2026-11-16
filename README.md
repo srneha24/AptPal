@@ -5,6 +5,8 @@
 - [AptPal Backend](backend/README.md)
 - [AptPal Frotend](frontend/README.md)
 - [AptPal Mobile](mobile/README.md)
+- [AptPal Admin](admin/README.md)
+- [AptPal Site](site/README.md)
 
 ## Tech Stack
 
@@ -13,7 +15,7 @@
   - *Framework:* Django
   - *Database:* PostgreSQL
 
-- **Frontend**
+- **Frontend/Site/Admin**
   - *Language:* Typescript
   - *Frameword:* React
   - *Styling:* Tailwind CSS

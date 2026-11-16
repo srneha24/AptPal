@@ -1,6 +1,6 @@
 # AGENTS.md — AptPal Project Guidelines
 
-Operational rules and commands for AI coding agents working on AptPal (Backend: Django/Postgres, Frontend: React/Tailwind, Mobile: React Native/Expo SDK 58).
+Operational rules and commands for AI coding agents working on AptPal (Backend: Django/Postgres, Frontend/Site/Admin: React/Tailwind, Mobile: React Native/Expo SDK 58).
 
 ## Essential Commands
 
@@ -24,6 +24,24 @@ Operational rules and commands for AI coding agents working on AptPal (Backend: 
 - **Type-check only:** `cd frontend && npx tsc -b`
 - **Lint:** `cd frontend && npm run lint` (runs `oxlint`)
 
+### Site (`/site`) — Public Portal
+
+- **Node / Package Manager:** `npm` (on Windows, use `cmd.exe /c npm ...` or `npm.cmd` if blocked by PowerShell execution policy).
+- **Install dependencies:** `cd site && npm install`
+- **Run dev server:** `cd site && npm run dev`
+- **Type-check & build:** `cd site && npm run build` (runs `tsc -b && vite build`)
+- **Type-check only:** `cd site && npx tsc -b`
+- **Lint:** `cd site && npm run lint` (runs `oxlint`)
+
+### Admin (`/admin`) — Operations Dashboard
+
+- **Node / Package Manager:** `npm` (on Windows, use `cmd.exe /c npm ...` or `npm.cmd` if blocked by PowerShell execution policy).
+- **Install dependencies:** `cd admin && npm install`
+- **Run dev server:** `cd admin && npm run dev`
+- **Type-check & build:** `cd admin && npm run build` (runs `tsc -b && vite build`)
+- **Type-check only:** `cd admin && npx tsc -b`
+- **Lint:** `cd admin && npm run lint` (runs `oxlint`)
+
 ### Mobile (`/mobile`)
 
 - **Framework:** Expo SDK 58 (`~58.0.25`), React Native 0.88.
@@ -39,19 +57,23 @@ Operational rules and commands for AI coding agents working on AptPal (Backend: 
 - **Uniform Project Naming:** Every project configuration MUST use `"name": "aptpal"`.
   - Backend: [backend/pyproject.toml](file:///c:/Users/Neha/Documents/Programming/AptPal/backend/pyproject.toml) (`name = "aptpal"`, settings module: `aptpal.settings`).
   - Frontend: [frontend/package.json](file:///c:/Users/Neha/Documents/Programming/AptPal/frontend/package.json) (`name = "aptpal"`).
+  - Site: [site/package.json](file:///c:/Users/Neha/Documents/Programming/AptPal/site/package.json) (`name = "aptpal"`).
+  - Admin: [admin/package.json](file:///c:/Users/Neha/Documents/Programming/AptPal/admin/package.json) (`name = "aptpal"`).
   - Mobile: [mobile/package.json](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/package.json) (`name = "aptpal"`), [mobile/app.json](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/app.json) (`name = "AptPal"`, `slug = "aptpal"`).
-  - Always synchronize lockfiles ([backend/uv.lock](file:///c:/Users/Neha/Documents/Programming/AptPal/backend/uv.lock), [frontend/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/frontend/package-lock.json), [mobile/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/package-lock.json)) when updating project metadata.
+  - Always synchronize lockfiles ([backend/uv.lock](file:///c:/Users/Neha/Documents/Programming/AptPal/backend/uv.lock), [frontend/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/frontend/package-lock.json), [site/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/site/package-lock.json), [admin/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/admin/package-lock.json), [mobile/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/package-lock.json)) when updating project metadata.
 - **Directory Structure:**
   - `backend/aptpal/`: Django project core (`settings.py`, `urls.py`, `wsgi.py`, `asgi.py`).
   - `backend/<app>/`: Domain applications (rentals, accounts, etc.).
-  - `frontend/src/`: React SPA source (`theme/`, `context/`, `components/`, `pages/`).
+  - `frontend/src/`: React SPA source — authenticated app (`theme/`, `context/`, `components/`, `pages/`).
+  - `site/src/`: React SPA source — public portal (`theme/`, `context/`, `components/`, `pages/`).
+  - `admin/src/`: React SPA source — admin operations dashboard (`theme/`, `context/`, `components/`, `pages/`).
   - `mobile/`: Expo app source (`theme/`, `constants/`, `context/`, `components/`, `screens/`).
 
 ---
 
 ## Design System & Theme Parity
 
-Frontend and mobile MUST remain visually and stylistically synchronized at all times.
+Frontend and mobile MUST remain visually and stylistically synchronized at all times. This applies to all three web frontends (`frontend/`, `site/`, `admin/`) and the mobile app.
 
 - **Figma Palette:** Extracted from Figma project `AptPal` (`ColorPalette` node `1:2`):
   - `primary`: 100–700 (`base: #1F0A57`)
@@ -61,6 +83,8 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
   - `grey`: 100–700 (light surface: `#F1F0F1`, dark surface: `#1D1C20`)
 - **Triple Theme Support:** Both apps must support `light`, `dark`, and `system` modes:
   - Frontend: [frontend/src/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/AptPal/frontend/src/context/ThemeContext.tsx) toggles `.dark` class, consumes `--color-theme-*` variables from [frontend/src/index.css](file:///c:/Users/Neha/Documents/Programming/AptPal/frontend/src/index.css).
+  - Site: [site/src/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/AptPal/site/src/context/ThemeContext.tsx) — same pattern as frontend.
+  - Admin: [admin/src/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/AptPal/admin/src/context/ThemeContext.tsx) — same pattern as frontend.
   - Mobile: [mobile/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/context/ThemeContext.tsx) consumes `useColorScheme()`, tokens in [mobile/constants/Colors.ts](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/constants/Colors.ts), and [mobile/app.json](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/app.json) (`"userInterfaceStyle": "automatic"`).
   - When introducing new tokens or components, define matching semantic colors for both platforms.
 
@@ -99,7 +123,7 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
 - **Maintain Roadmap Ticket Statuses:**
   - Before starting work on any feature or task, **move the corresponding ticket in the AptPal Roadmap database to `In progress`**.
   - When the task is verified and finished, **move the ticket to `Completed`**.
-- **README Files Policy:** DO NOT modify, generate, or update any `README.md` files (root, `/backend`, `/frontend`, `/mobile`) unless the user explicitly instructs you to do so.
+- **README Files Policy:** DO NOT modify, generate, or update any `README.md` files (root, `/backend`, `/frontend`, `/site`, `/admin`, `/mobile`) unless the user explicitly instructs you to do so.
 - **Test Execution Policy:** Automated tests (`python manage.py test`, npm test, etc.) MUST ONLY be executed when the user explicitly instructs it. Do not run test suites autonomously during pre-commit checks or development unless requested.
 
 ---
@@ -110,5 +134,7 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
 - **Pre-commit verification checklist:**
   1. Backend: `cd backend && uv run python manage.py check` (run `test` ONLY if user explicitly requested)
   2. Frontend: `cd frontend && npm run build && npm run lint`
-  3. Mobile: `cd mobile && npx tsc --noEmit`
+  3. Site: `cd site && npm run build && npm run lint`
+  4. Admin: `cd admin && npm run build && npm run lint`
+  5. Mobile: `cd mobile && npx tsc --noEmit`
 - Commit messages: Imperative and scoped (e.g. `feat(mobile): add rental search filter card`).
