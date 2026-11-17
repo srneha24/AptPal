@@ -3,7 +3,7 @@
 ## Stack Layers
 
 - [AptPal Backend](backend/README.md)
-- [AptPal Frotend](frontend/README.md)
+- [AptPal Frontend](frontend/README.md)
 - [AptPal Mobile](mobile/README.md)
 - [AptPal Admin](admin/README.md)
 - [AptPal Site](site/README.md)
@@ -17,7 +17,7 @@
 
 - **Frontend/Site/Admin**
   - *Language:* Typescript
-  - *Frameword:* React
+  - *Framework:* React
   - *Styling:* Tailwind CSS
 
 - **Mobile**
