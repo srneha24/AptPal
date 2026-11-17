@@ -11,7 +11,7 @@ Operational rules and commands for AI coding agents working on AptPal (Backend: 
 - **Add dependency:** `cd backend && uv add <package>`
 - **Run dev server:** `cd backend && uv run python manage.py runserver`
 - **System check:** `cd backend && uv run python manage.py check`
-- **Migrations:** `cd backend && uv run python manage.py makemigrations && uv run python manage.py migrate`
+- **Database migrations:** Agents must never handle database migrations. Do not create, edit, delete, inspect by execution, or apply migration files; do not run `makemigrations`, `makemigration`, `migrate`, or other commands that generate or apply database migrations. Leave all migration work to the project owner.
 - **Run all tests:** `cd backend && uv run python manage.py test`
 - **Run single test:** `cd backend && uv run python manage.py test <app>.tests.<test_module>`
 
@@ -102,6 +102,10 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
   - Use PostgreSQL with `psycopg` (binary locally).
   - Expose API endpoints using Django REST framework (`rest_framework`) with CORS configured.
   - Follow PEP 8 and `snake_case` in Python; `camelCase` for TypeScript/React.
+  - Never expose Django user IDs in responses sent to the frontend or mobile app; client-facing account data must use the `AppUser` object.
+  - Use Appwrite for file storage only. Do not use Appwrite Account or other Appwrite services for authentication, email, or SMS.
+  - Send email through Django's configured email backend using Brevo SMTP. Phone numbers are optional profile contact information and are not verified; do not implement SMS verification.
+  - Keep provider credentials in server-side environment variables and out of source control.
 
 ---
 

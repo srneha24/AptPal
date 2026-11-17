@@ -44,11 +44,10 @@ class AppUserAdmin(admin.ModelAdmin):
     list_display = (
         "user",
         "phone_number",
-        "phone_verified",
         "status",
         "verification_status",
         "verified_by",
     )
-    list_filter = ("status", "phone_verified", "email_verified", "verification_status")
+    list_filter = ("status", "email_verified", "verification_status")
     search_fields = ("user__email", "phone_number")
     readonly_fields = ("created_at", "updated_at")

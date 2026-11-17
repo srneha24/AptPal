@@ -58,7 +58,6 @@ class AppUser(models.Model):
     national_id_image_id = models.CharField(max_length=50, blank=True, null=True)
 
     email_verified = models.BooleanField(default=False)
-    phone_verified = models.BooleanField(default=False)
     
     status = models.CharField(
         max_length=20, choices=Status.choices, default=Status.ACTIVE

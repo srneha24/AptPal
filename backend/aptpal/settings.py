@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -27,6 +28,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+FRONTEND_URL = os.getenv("FRONTEND_URL").rstrip("/")
 
 
 # Application definition
@@ -38,6 +40,8 @@ DEFAULT_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "rest_framework.authtoken",
 ]
 
 PROJECT_APPS = [
@@ -47,6 +51,19 @@ PROJECT_APPS = [
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    "DEFAULT_PAGINATION_CLASS": "conf.responses.EnvelopePagination",
+    "PAGE_SIZE": 20,
+    "EXCEPTION_HANDLER": "conf.responses.api_exception_handler",
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -127,3 +144,21 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# Email settings
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp-relay.brevo.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv("BREVO_SMTP_LOGIN")
+EMAIL_HOST_PASSWORD = os.getenv("BREVO_SMTP_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("BREVO_SENDER_EMAIL")
+
+
+# Appwrite settings
+
+APPWRITE_PROJECT_ID = os.getenv("APPWRITE_PROJECT_ID")
+APPWRITE_API_KEY = os.getenv("APPWRITE_API_KEY")
+APPWRITE_API_ENDPOINT = os.getenv("APPWRITE_API_ENDPOINT")
+APPWRITE_BUCKET_ID = os.getenv("APPWRITE_BUCKET_ID")

@@ -2,6 +2,8 @@
 
 The server-side application for AptPal, delivering RESTful APIs, real-time WebSocket communication, AI image moderation, and third-party integrations.
 
+[API Documentation](https://flobi1oe4c.apidog.io/)
+
 ## Tech Stack
 
 - **Runtime & Language:** Python >= 3.13
@@ -12,7 +14,7 @@ The server-side application for AptPal, delivering RESTful APIs, real-time WebSo
 - **Database:** PostgreSQL with `psycopg[binary]` driver
 - **Package Manager:** `uv` (Fast Python package manager)
 - **AI & Moderation:** Groq Vision models (`llama-3.2-11b-vision-preview` / `llama-3.2-90b-vision-preview`) via Groq API for automated rental photo safety checks
-- **Cloud Storage & Services:** Appwrite (Appwrite Storage for rental photos and Appwrite Account for user email verifications)
+- **External Services:** Appwrite Storage for uploaded files only; Django's email backend with Brevo SMTP for outbound email.
 - **Mapping & Geodata:** OpenStreetMap geo-coordinates (latitude/longitude) and spatial bounding-box search
 
 ## Core Commands
