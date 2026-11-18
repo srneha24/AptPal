@@ -1,4 +1,4 @@
-﻿import * as SecureStore from 'expo-secure-store'
+import * as SecureStore from 'expo-secure-store'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import {
@@ -28,9 +28,9 @@ interface StoredSession {
   user: AuthUser
 }
 
-const ACCESS_KEY = 'aptpal_access_token'
-const REFRESH_KEY = 'aptpal_refresh_token'
-const USER_KEY = 'aptpal_user'
+const ACCESS_KEY = 'mytemphome_access_token'
+const REFRESH_KEY = 'mytemphome_refresh_token'
+const USER_KEY = 'mytemphome_user'
 const AuthContext = createContext<AuthContextValue | null>(null)
 
 async function clearStoredSession() {

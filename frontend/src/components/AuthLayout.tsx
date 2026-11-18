@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import aptPalLogo from '../assets/logo.png'
+import myTempHomeLogo from '../assets/logo.png'
 
 export function AuthLayout({ children }: { children: ReactNode }) {
   return (
@@ -9,7 +9,7 @@ export function AuthLayout({ children }: { children: ReactNode }) {
       <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-quaternary-200/40 blur-3xl dark:bg-secondary-700/25" />
       <div className="relative w-full max-w-md">
         <Link to="/" className="mb-7 flex items-center justify-center gap-3 text-theme-text-primary no-underline">
-          <img src={aptPalLogo} alt="AptPal" className="h-24 w-24 rounded-2xl object-cover" />
+          <img src={myTempHomeLogo} alt="MyTempHome" className="h-24 w-24 rounded-2xl object-cover" />
         </Link>
         <section className="rounded-3xl border border-theme-border bg-theme-surface p-6 shadow-xl shadow-primary-700/5 transition-colors duration-200 sm:p-9">
           {children}

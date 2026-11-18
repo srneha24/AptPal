@@ -1,6 +1,6 @@
-# AptPal Admin
+# MyTempHome Admin
 
-The operations dashboard for AptPal, supporting listing moderation, landlord verification, scammer management, and platform analytics.
+The operations dashboard for MyTempHome, supporting listing moderation, landlord verification, scammer management, and platform analytics.
 
 ## Tech Stack
 

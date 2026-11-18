@@ -22,9 +22,9 @@ export interface AuthContextValue {
   logout: () => void
 }
 
-const ACCESS_TOKEN_KEY = 'aptpal_access_token'
-const REFRESH_TOKEN_KEY = 'aptpal_refresh_token'
-const USER_KEY = 'aptpal_user'
+const ACCESS_TOKEN_KEY = 'mytemphome_access_token'
+const REFRESH_TOKEN_KEY = 'mytemphome_refresh_token'
+const USER_KEY = 'mytemphome_user'
 function readStoredUser(): AuthUser | null {
   const serializedUser = localStorage.getItem(USER_KEY)
   if (!serializedUser) return null
@@ -41,8 +41,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const handleExpiredSession = () => setUser(null)
-    window.addEventListener('aptpal:session-expired', handleExpiredSession)
-    return () => window.removeEventListener('aptpal:session-expired', handleExpiredSession)
+    window.addEventListener('mytemphome:session-expired', handleExpiredSession)
+    return () => window.removeEventListener('mytemphome:session-expired', handleExpiredSession)
   }, [])
 
   const login = useCallback(async (email: string, password: string) => {

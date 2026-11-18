@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Navigate, Route, Routes } from 'react-router-dom'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
 import { AuthProvider } from './auth/AuthContext'
 import { useAuth } from './auth/useAuth'
-import aptPalLogo from './assets/logo.png'
+import myTempHomeLogo from './assets/logo.png'
 import { AuthLayout } from './components/AuthLayout'
 import { LoginPage } from './pages/LoginPage'
 import { SignupPage } from './pages/SignupPage'
@@ -24,7 +24,7 @@ function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-theme-bg p-6 text-center transition-colors duration-200">
       <section className="w-full max-w-md rounded-3xl border border-theme-border bg-theme-surface p-8 shadow-sm transition-colors duration-200">
-        <img src={aptPalLogo} alt="AptPal" className="mx-auto mb-4 h-28 w-28 rounded-2xl object-cover" />
+        <img src={myTempHomeLogo} alt="MyTempHome" className="mx-auto mb-4 h-28 w-28 rounded-2xl object-cover" />
         <p className="mb-2 text-sm text-theme-text-secondary">Find and post rentals with ease.</p>
         {user ? (
           <div className="mb-6 flex items-center justify-center gap-2 text-sm text-theme-text-secondary">

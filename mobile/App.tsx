@@ -15,7 +15,7 @@ function MainScreen() {
           <Text style={[styles.logoText, { color: colors.brandPrimary }]}>AP</Text>
         </View>
 
-        <Text style={[styles.title, { color: colors.textPrimary }]}>AptPal</Text>
+        <Text style={[styles.title, { color: colors.textPrimary }]}>MyTempHome</Text>
         <Text style={[styles.subtitle, { color: colors.textSecondary }]}>
           Find and post rentals with ease.
         </Text>

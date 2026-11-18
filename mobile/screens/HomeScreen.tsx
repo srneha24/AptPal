@@ -23,7 +23,7 @@ export function HomeScreen() {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border, shadowColor: colors.cardShadow }]}>
-        <Image source={require('../assets/logo.png')} accessibilityLabel="AptPal" style={styles.logo} resizeMode="contain" />
+        <Image source={require('../assets/logo.png')} accessibilityLabel="MyTempHome" style={styles.logo} resizeMode="contain" />
         <Text style={[styles.subtitle, { color: colors.textSecondary }]}>Find and post rentals with ease.</Text>
         {user ? (
           <View style={styles.accountRow}>

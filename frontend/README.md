@@ -1,6 +1,6 @@
-# AptPal Frontend
+# MyTempHome Frontend
 
-The single-page web client for AptPal, delivering rental discovery, interactive OpenStreetMap exploration, real-time messaging, and multi-step listing workflows.
+The single-page web client for MyTempHome, delivering rental discovery, interactive OpenStreetMap exploration, real-time messaging, and multi-step listing workflows.
 
 ## Tech Stack
 

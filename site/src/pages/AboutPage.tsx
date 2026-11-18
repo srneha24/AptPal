@@ -3,7 +3,7 @@ export function AboutPage() {
     <main className="about-main">
       <section className="about-content" aria-labelledby="about-heading">
         <p className="eyebrow section-eyebrow">A place for every chapter</p>
-        <h1 id="about-heading">About AptPal</h1>
+        <h1 id="about-heading">About MyTempHome</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
           incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis

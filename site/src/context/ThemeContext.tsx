@@ -20,7 +20,7 @@ const ThemeContext = createContext<ThemeContextType>({
   setThemeMode: () => {},
 });
 
-const STORAGE_KEY = 'aptpal_theme_mode';
+const STORAGE_KEY = 'mytemphome_theme_mode';
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [themeMode, setThemeModeState] = useState<ThemeMode>(() => {

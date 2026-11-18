@@ -1,6 +1,6 @@
-# AptPal Mobile
+# MyTempHome Mobile
 
-The AptPal iOS and Android app, built with React Native and Expo. The app is under development; the current implemented flow includes email and password signup and login, with email verification completed through the web app.
+The MyTempHome iOS and Android app, built with React Native and Expo. The app is under development; the current implemented flow includes email and password signup and login, with email verification completed through the web app.
 
 ## Tech stack
 

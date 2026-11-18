@@ -55,11 +55,11 @@ export default function LoginRoute() {
 
   return (
     <AuthScreen
-      title="Log in to AptPal"
+      title="Log in to MyTempHome"
       subtitle="Find your next place and keep your rental plans in one spot."
       footer={(
         <View style={styles.footerRow}>
-          <Text style={[styles.footerText, { color: colors.textSecondary }]}>New to AptPal?</Text>
+          <Text style={[styles.footerText, { color: colors.textSecondary }]}>New to MyTempHome?</Text>
           <Pressable onPress={() => router.push('/signup')} accessibilityRole="link">
             <Text style={[styles.link, { color: colors.brandPrimary }]}>Create an account</Text>
           </Pressable>

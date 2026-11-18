@@ -19,7 +19,7 @@ def default_message_for_status(status_code: int) -> str:
 
 
 class APIResponse(Response):
-    """A DRF response with AptPal's standard API envelope."""
+    """A DRF response with MyTempHome's standard API envelope."""
 
     def __init__(
         self,

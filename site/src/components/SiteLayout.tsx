@@ -29,14 +29,14 @@ export function SiteLayout() {
     <div className="site-shell">
       <header className="site-header">
         <div className="site-header-inner">
-          <NavLink className="site-brand" to="/" aria-label="AptPal home">
+          <NavLink className="site-brand" to="/" aria-label="MyTempHome home">
             <img
               className="site-brand-mark"
               src="/android-chrome-192x192.png"
               alt=""
               aria-hidden="true"
             />
-            <span>AptPal</span>
+            <span>MyTempHome</span>
           </NavLink>
 
           <nav className="site-main-nav" aria-label="Main navigation">
@@ -46,7 +46,7 @@ export function SiteLayout() {
 
           <div className="site-header-actions">
             <a className="site-login-link" href={`${frontendBaseUrl}/login`}>Log in</a>
-            <a className="site-signup-link" href={`${frontendBaseUrl}/signup`}>Join AptPal</a>
+            <a className="site-signup-link" href={`${frontendBaseUrl}/signup`}>Join MyTempHome</a>
             <button
               type="button"
               className="theme-toggle-button"
@@ -64,7 +64,7 @@ export function SiteLayout() {
 
       <footer className="site-footer">
         <div className="site-footer-inner">
-          <span>AptPal</span>
+          <span>MyTempHome</span>
           <nav aria-label="Footer navigation">
             <NavLink to="/postings">Postings</NavLink>
             <NavLink to="/about">About</NavLink>
