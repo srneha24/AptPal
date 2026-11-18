@@ -3,6 +3,7 @@
     "name": "AptPal",
     "slug": "aptpal",
     "version": "1.0.0",
+    "scheme": "aptpal",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -20,6 +21,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ]
   }
 }
