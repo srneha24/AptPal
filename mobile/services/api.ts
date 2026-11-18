@@ -1,4 +1,4 @@
-﻿import { Platform } from 'react-native'
+import { Platform } from 'react-native'
 
 export interface ApiEnvelope<T> {
   success: boolean
@@ -51,7 +51,7 @@ async function postEnvelope<T>(path: string, payload: unknown, accessToken?: str
       body: JSON.stringify(payload),
     })
   } catch {
-    throw new ApiError('Unable to connect to AptPal. Check your connection and try again.')
+    throw new ApiError('Unable to connect to MyTempHome. Check your connection and try again.')
   }
 
   let envelope: ApiEnvelope<T>

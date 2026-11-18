@@ -1,6 +1,6 @@
-# AptPal
+# MyTempHome
 
-AptPal is a rental housing platform for renters and landlords. It includes authenticated web and mobile apps, a public portal for listings, an operations dashboard, and a shared backend.
+MyTempHome is a rental housing platform for renters and landlords. It includes authenticated web and mobile apps, a public portal for listings, an operations dashboard, and a shared backend.
 
 ## Projects
 
@@ -55,7 +55,7 @@ flowchart LR
 
 ## Shared design system
 
-The web and mobile apps share AptPal's palette and light, dark, and system theme modes. Brand colors include `#1F0A57`, `#510782`, `#B32E5F`, and `#CB1A7D`.
+The web and mobile apps share MyTempHome's palette and light, dark, and system theme modes. Brand colors include `#1F0A57`, `#510782`, `#B32E5F`, and `#CB1A7D`.
 
 ## License
 

@@ -1,6 +1,6 @@
-# AptPal Backend
+# MyTempHome Backend
 
-The Django backend for AptPal. It contains the account, listing, and booking apps and exposes REST API endpoints for authentication, email verification, profile management, and image access.
+The Django backend for MyTempHome. It contains the account, listing, and booking apps and exposes REST API endpoints for authentication, email verification, profile management, and image access.
 
 [API Documentation](https://flobi1oe4c.apidog.io/)
 

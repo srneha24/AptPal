@@ -21,10 +21,10 @@ function AdminContent() {
 
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-theme-tint text-theme-brand-primary text-xs font-bold mb-3">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>AptPal Operations & Security</span>
+          <span>MyTempHome Operations & Security</span>
         </div>
 
-        <h1 className="text-3xl font-extrabold text-theme-text-primary mb-1">AptPal Admin</h1>
+        <h1 className="text-3xl font-extrabold text-theme-text-primary mb-1">MyTempHome Admin</h1>
         <p className="text-theme-text-secondary mb-6 text-sm">
           Management portal for post approvals, landlord verification, and platform analytics.
         </p>

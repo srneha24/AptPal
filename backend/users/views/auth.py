@@ -40,9 +40,9 @@ def _send_verification_email(user):
     )
     text_message = (
         f"Hi {user.first_name},\n\n"
-        "Thanks for signing up for AptPal. Verify your email address by "
+        "Thanks for signing up for MyTempHome. Verify your email address by "
         f"opening this link:\n\n{verification_url}\n\n"
-        "If you did not create an AptPal account, you can ignore this email."
+        "If you did not create an MyTempHome account, you can ignore this email."
     )
     html_message = render_to_string(
         "emails/verify_email.html",
@@ -52,7 +52,7 @@ def _send_verification_email(user):
         },
     )
     email = EmailMultiAlternatives(
-        subject="Verify your AptPal email",
+        subject="Verify your MyTempHome email",
         body=text_message,
         from_email=None,
         to=[user.email],
@@ -62,8 +62,8 @@ def _send_verification_email(user):
     logo_path = settings.BASE_DIR / "static" / "images" / "logo.png"
     with logo_path.open("rb") as logo_file:
         logo = MIMEImage(logo_file.read(), _subtype="png")
-    logo.add_header("Content-ID", "<aptpal-logo>")
-    logo.add_header("Content-Disposition", "inline", filename="aptpal-logo.png")
+    logo.add_header("Content-ID", "<mytemphome-logo>")
+    logo.add_header("Content-Disposition", "inline", filename="mytemphome-logo.png")
     email.attach(logo)
     email.send(fail_silently=False)
 
@@ -122,7 +122,7 @@ class ResendVerificationEmailView(APIView):
         return APIResponse(
             data={},
             message=(
-                "If an unverified AptPal account exists for that email, "
+                "If an unverified MyTempHome account exists for that email, "
                 "a fresh verification link will be sent."
             ),
         )

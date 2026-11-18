@@ -57,7 +57,7 @@ export function SignupPage() {
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-theme-brand-primary">One more step</p>
           <h1 className="text-3xl font-extrabold tracking-tight">Check your email</h1>
         </div>
-        <ApiNotice tone="success" message="Your AptPal account has been created. Use the verification link in your email before logging in." />
+        <ApiNotice tone="success" message="Your MyTempHome account has been created. Use the verification link in your email before logging in." />
         <Link to="/login" className="inline-flex w-full items-center justify-center rounded-xl bg-theme-brand-primary px-4 py-3.5 text-sm font-bold text-theme-brand-content shadow-md shadow-primary-700/15 transition hover:opacity-90">Go to log in</Link>
       </div>
     )

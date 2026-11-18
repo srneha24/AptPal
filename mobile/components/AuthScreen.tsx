@@ -20,9 +20,9 @@ export function AuthScreen({ title, subtitle, children, footer }: AuthScreenProp
       <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
           <View style={styles.content}>
-            <Image source={require('../assets/logo.png')} accessibilityLabel="AptPal" style={styles.logo} resizeMode="contain" />
+            <Image source={require('../assets/logo.png')} accessibilityLabel="MyTempHome" style={styles.logo} resizeMode="contain" />
             <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border, shadowColor: colors.cardShadow }]}>
-              <Text style={[styles.eyebrow, { color: colors.brandPrimary }]}>APTPAL</Text>
+              <Text style={[styles.eyebrow, { color: colors.brandPrimary }]}>MyTempHome</Text>
               <Text style={[styles.title, { color: colors.textPrimary }]}>{title}</Text>
               <Text style={[styles.subtitle, { color: colors.textSecondary }]}>{subtitle}</Text>
               {children}

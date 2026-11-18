@@ -1,6 +1,6 @@
-# AGENTS.md — AptPal Project Guidelines
+# AGENTS.md — MyTempHome Project Guidelines
 
-Operational rules and commands for AI coding agents working on AptPal (Backend: Django/Postgres, Frontend/Site/Admin: React/Tailwind, Mobile: React Native/Expo SDK 58).
+Operational rules and commands for AI coding agents working on MyTempHome (Backend: Django/Postgres, Frontend/Site/Admin: React/Tailwind, Mobile: React Native/Expo SDK 58).
 
 ## Essential Commands
 
@@ -54,15 +54,15 @@ Operational rules and commands for AI coding agents working on AptPal (Backend: 
 
 ## Architectural & Project Boundaries
 
-- **Uniform Project Naming:** Every project configuration MUST use `"name": "aptpal"`.
-  - Backend: [backend/pyproject.toml](file:///c:/Users/Neha/Documents/Programming/AptPal/backend/pyproject.toml) (`name = "aptpal"`, settings module: `aptpal.settings`).
-  - Frontend: [frontend/package.json](file:///c:/Users/Neha/Documents/Programming/AptPal/frontend/package.json) (`name = "aptpal"`).
-  - Site: [site/package.json](file:///c:/Users/Neha/Documents/Programming/AptPal/site/package.json) (`name = "aptpal"`).
-  - Admin: [admin/package.json](file:///c:/Users/Neha/Documents/Programming/AptPal/admin/package.json) (`name = "aptpal"`).
-  - Mobile: [mobile/package.json](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/package.json) (`name = "aptpal"`), [mobile/app.json](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/app.json) (`name = "AptPal"`, `slug = "aptpal"`).
-  - Always synchronize lockfiles ([backend/uv.lock](file:///c:/Users/Neha/Documents/Programming/AptPal/backend/uv.lock), [frontend/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/frontend/package-lock.json), [site/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/site/package-lock.json), [admin/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/admin/package-lock.json), [mobile/package-lock.json](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/package-lock.json)) when updating project metadata.
+- **Uniform Project Naming:** Every project configuration MUST use `"name": "mytemphome"`.
+  - Backend: [backend/pyproject.toml](file:///c:/Users/Neha/Documents/Programming/MyTempHome/backend/pyproject.toml) (`name = "mytemphome"`, settings module: `mytemphome.settings`).
+  - Frontend: [frontend/package.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/frontend/package.json) (`name = "mytemphome"`).
+  - Site: [site/package.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/site/package.json) (`name = "mytemphome"`).
+  - Admin: [admin/package.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/admin/package.json) (`name = "mytemphome"`).
+  - Mobile: [mobile/package.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/mobile/package.json) (`name = "mytemphome"`), [mobile/app.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/mobile/app.json) (`name = "MyTempHome"`, `slug = "mytemphome"`).
+  - Always synchronize lockfiles ([backend/uv.lock](file:///c:/Users/Neha/Documents/Programming/MyTempHome/backend/uv.lock), [frontend/package-lock.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/frontend/package-lock.json), [site/package-lock.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/site/package-lock.json), [admin/package-lock.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/admin/package-lock.json), [mobile/package-lock.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/mobile/package-lock.json)) when updating project metadata.
 - **Directory Structure:**
-  - `backend/aptpal/`: Django project core (`settings.py`, `urls.py`, `wsgi.py`, `asgi.py`).
+  - `backend/mytemphome/`: Django project core (`settings.py`, `urls.py`, `wsgi.py`, `asgi.py`).
   - `backend/<app>/`: Domain applications (rentals, accounts, etc.).
   - `frontend/src/`: React SPA source — authenticated app (`theme/`, `context/`, `components/`, `pages/`).
   - `site/src/`: React SPA source — public portal (`theme/`, `context/`, `components/`, `pages/`).
@@ -75,17 +75,17 @@ Operational rules and commands for AI coding agents working on AptPal (Backend: 
 
 Frontend and mobile MUST remain visually and stylistically synchronized at all times. This applies to all three web frontends (`frontend/`, `site/`, `admin/`) and the mobile app.
 
-- **Figma Palette:** Extracted from Figma project `AptPal` (`ColorPalette` node `1:2`):
+- **Figma Palette:** Extracted from Figma project `MyTempHome` (`ColorPalette` node `1:2`):
   - `primary`: 100–700 (`base: #1F0A57`)
   - `secondary`: 100–700 (`base: #510782`)
   - `tertiary`: 100–700 (`base: #B32E5F`)
   - `quaternary`: 100–700 (`base: #CB1A7D`)
   - `grey`: 100–700 (light surface: `#F1F0F1`, dark surface: `#1D1C20`)
 - **Triple Theme Support:** Both apps must support `light`, `dark`, and `system` modes:
-  - Frontend: [frontend/src/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/AptPal/frontend/src/context/ThemeContext.tsx) toggles `.dark` class, consumes `--color-theme-*` variables from [frontend/src/index.css](file:///c:/Users/Neha/Documents/Programming/AptPal/frontend/src/index.css).
-  - Site: [site/src/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/AptPal/site/src/context/ThemeContext.tsx) — same pattern as frontend.
-  - Admin: [admin/src/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/AptPal/admin/src/context/ThemeContext.tsx) — same pattern as frontend.
-  - Mobile: [mobile/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/context/ThemeContext.tsx) consumes `useColorScheme()`, tokens in [mobile/constants/Colors.ts](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/constants/Colors.ts), and [mobile/app.json](file:///c:/Users/Neha/Documents/Programming/AptPal/mobile/app.json) (`"userInterfaceStyle": "automatic"`).
+  - Frontend: [frontend/src/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/MyTempHome/frontend/src/context/ThemeContext.tsx) toggles `.dark` class, consumes `--color-theme-*` variables from [frontend/src/index.css](file:///c:/Users/Neha/Documents/Programming/MyTempHome/frontend/src/index.css).
+  - Site: [site/src/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/MyTempHome/site/src/context/ThemeContext.tsx) — same pattern as frontend.
+  - Admin: [admin/src/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/MyTempHome/admin/src/context/ThemeContext.tsx) — same pattern as frontend.
+  - Mobile: [mobile/context/ThemeContext.tsx](file:///c:/Users/Neha/Documents/Programming/MyTempHome/mobile/context/ThemeContext.tsx) consumes `useColorScheme()`, tokens in [mobile/constants/Colors.ts](file:///c:/Users/Neha/Documents/Programming/MyTempHome/mobile/constants/Colors.ts), and [mobile/app.json](file:///c:/Users/Neha/Documents/Programming/MyTempHome/mobile/app.json) (`"userInterfaceStyle": "automatic"`).
   - When introducing new tokens or components, define matching semantic colors for both platforms.
 
 ---
@@ -112,7 +112,7 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
 
 ## Environment & Gotchas
 
-- **Django Settings Module:** Always set `DJANGO_SETTINGS_MODULE=aptpal.settings`. Do not use `aptpal_backend`.
+- **Django Settings Module:** Always set `DJANGO_SETTINGS_MODULE=mytemphome.settings`. Do not use `mytemphome_backend`.
 - **Environment Variables:** Load environment variables via `python-dotenv`.
 - **Offline uv:** If working offline or in sandboxes without PyPI access, use `uv lock --offline` and `uv run --no-sync` / `uv run --offline`.
 - **Windows CLI Quirk:** On Windows PowerShell, npm scripts may trigger execution policy errors (`PSSecurityException`). Always invoke via `cmd.exe /c "npm ..."` or `npm.cmd`.
@@ -122,13 +122,13 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
 
 ## Notion & Project Tracking Rules
 
-- **API Documentation:** Consult the [AptPal Apidog documentation](https://flobi1oe4c.apidog.io/) for API contracts. If documentation is unavailable or unclear, use the backend implementation as the source of truth.
+- **API Documentation:** Consult the [MyTempHome Apidog documentation](https://flobi1oe4c.apidog.io/) for API contracts. If documentation is unavailable or unclear, use the backend implementation as the source of truth.
 
 - **Consult Notion Sources for Insights:** Agents MUST ALWAYS consult the two Notion resources for project requirements, architecture context, and roadmaps:
-  1. **AptPal Plans** (Page ID: `41961011-8983-8024-b16f-d3ce6b64e7e2`, [Notion Page](https://app.notion.com/p/4196101189838024b16fd3ce6b64e7e2)) — feature specs, user roles, security checks, design tokens.
-  2. **AptPal Roadmap** (Database ID: `41961011-8983-80b6-9737-fb902fc92d36`, [Notion Database](https://app.notion.com/p/41961011898380b69737fb902fc92d36)) — official project tracker and ticket board.
+  1. **MyTempHome Plans** (Page ID: `41961011-8983-8024-b16f-d3ce6b64e7e2`, [Notion Page](https://app.notion.com/p/4196101189838024b16fd3ce6b64e7e2)) — feature specs, user roles, security checks, design tokens.
+  2. **MyTempHome Roadmap** (Database ID: `41961011-8983-80b6-9737-fb902fc92d36`, [Notion Database](https://app.notion.com/p/41961011898380b69737fb902fc92d36)) — official project tracker and ticket board.
 - **Roadmap Ticket Workflow:**
-  - For noteworthy or substantial features and tasks, check the AptPal Roadmap before starting. If a matching ticket exists, move it to `In progress`; if none exists, create a ticket and set it to `In progress`.
+  - For noteworthy or substantial features and tasks, check the MyTempHome Roadmap before starting. If a matching ticket exists, move it to `In progress`; if none exists, create a ticket and set it to `In progress`.
   - If the user asks to remember or build a substantial task later, create a ticket with status `Planned` and leave it there until work begins.
   - Do not create roadmap tickets for minor fixes, simple edits, or routine housekeeping.
   - When a tracked task is verified and finished, move its ticket to `Completed`.

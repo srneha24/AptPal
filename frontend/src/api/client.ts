@@ -12,12 +12,12 @@ export const apiClient = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
-const ACCESS_TOKEN_KEY = 'aptpal_access_token'
-const REFRESH_TOKEN_KEY = 'aptpal_refresh_token'
+const ACCESS_TOKEN_KEY = 'mytemphome_access_token'
+const REFRESH_TOKEN_KEY = 'mytemphome_refresh_token'
 let refreshRequest: Promise<string> | null = null
 
 interface RetriableRequest extends InternalAxiosRequestConfig {
-  _aptpalRetried?: boolean
+  _mytemphomeRetried?: boolean
 }
 
 interface RefreshData {
@@ -37,7 +37,7 @@ apiClient.interceptors.response.use(
     const requestUrl = originalRequest?.url ?? ''
     const isAuthRequest = /\/auth\/(login|signup|token\/refresh)\//.test(requestUrl)
 
-    if (error.response?.status !== 401 || !originalRequest || originalRequest._aptpalRetried || isAuthRequest) {
+    if (error.response?.status !== 401 || !originalRequest || originalRequest._mytemphomeRetried || isAuthRequest) {
       return Promise.reject(error)
     }
 
@@ -47,7 +47,7 @@ apiClient.interceptors.response.use(
       return Promise.reject(error)
     }
 
-    originalRequest._aptpalRetried = true
+    originalRequest._mytemphomeRetried = true
     try {
       if (!refreshRequest) {
         refreshRequest = axios
@@ -73,8 +73,8 @@ apiClient.interceptors.response.use(
 function clearSession() {
   localStorage.removeItem(ACCESS_TOKEN_KEY)
   localStorage.removeItem(REFRESH_TOKEN_KEY)
-  localStorage.removeItem('aptpal_user')
-  window.dispatchEvent(new Event('aptpal:session-expired'))
+  localStorage.removeItem('mytemphome_user')
+  window.dispatchEvent(new Event('mytemphome:session-expired'))
 }
 
 export function getApiError(error: unknown) {
@@ -88,7 +88,7 @@ export function getApiError(error: unknown) {
       }
     }
     return {
-      message: response?.message || 'We could not connect to AptPal. Please try again.',
+      message: response?.message || 'We could not connect to MyTempHome. Please try again.',
       fieldErrors,
     }
   }

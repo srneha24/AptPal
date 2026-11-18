@@ -35,7 +35,7 @@ export function LoginPage() {
     <div>
       <div className="mb-7">
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-theme-brand-primary">Welcome back</p>
-        <h1 className="text-3xl font-extrabold tracking-tight">Log in to AptPal</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight">Log in to MyTempHome</h1>
         <p className="mt-2 text-sm leading-6 text-theme-text-secondary">Find your next place and keep your rental plans in one spot.</p>
       </div>
 
@@ -49,7 +49,7 @@ export function LoginPage() {
       </form>
 
       <p className="mt-6 text-center text-sm text-theme-text-secondary">
-        New to AptPal? <Link className="font-bold text-theme-brand-primary underline-offset-4 hover:underline" to="/signup">Create an account</Link>
+        New to MyTempHome? <Link className="font-bold text-theme-brand-primary underline-offset-4 hover:underline" to="/signup">Create an account</Link>
       </p>
     </div>
   )

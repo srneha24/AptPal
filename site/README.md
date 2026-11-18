@@ -1,6 +1,6 @@
-# AptPal Site
+# MyTempHome Site
 
-The public-facing web portal for AptPal, with a landing page, rental posting discovery, and project information.
+The public-facing web portal for MyTempHome, with a landing page, rental posting discovery, and project information.
 
 ## Tech Stack
 
@@ -38,7 +38,7 @@ npm install
 npm run dev
 ```
 
-Set `VITE_FRONTEND_URL` in `.env` to the base URL of the AptPal frontend. The site uses it to build the Log in and Join AptPal links. The example uses `http://localhost:5173`.
+Set `VITE_FRONTEND_URL` in `.env` to the base URL of the MyTempHome frontend. The site uses it to build the Log in and Join MyTempHome links. The example uses `http://localhost:5173`.
 
 ## Checks
 

@@ -1,6 +1,6 @@
 /**
- * AptPal Design System - Color Palette & Theme Tokens
- * Synchronized with Figma Project "AptPal" (Node: ColorPalette)
+ * MyTempHome Design System - Color Palette & Theme Tokens
+ * Synchronized with Figma Project "MyTempHome" (Node: ColorPalette)
  * Supports Light, Dark, and System modes
  */
 
