@@ -49,6 +49,13 @@ class VerifyEmailSerializer(serializers.Serializer):
     token = serializers.CharField()
 
 
+class ResendVerificationEmailSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    def validate_email(self, value):
+        return value.strip().lower()
+
+
 class AppUserRetrieveUpdateSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     first_name = serializers.CharField(

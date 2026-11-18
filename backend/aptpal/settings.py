@@ -34,6 +34,7 @@ FRONTEND_URL = os.getenv("FRONTEND_URL").rstrip("/")
 # Application definition
 
 DEFAULT_APPS = [
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -52,6 +53,8 @@ PROJECT_APPS = [
 
 INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS
 
+CORS_ALLOWED_ORIGINS = [origin.strip().rstrip("/") for origin in os.getenv("CORS_ALLOWED_ORIGINS").split(",")]
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -59,6 +62,32 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "conf.responses.EnvelopePagination",
     "PAGE_SIZE": 20,
     "EXCEPTION_HANDLER": "conf.responses.api_exception_handler",
+    "DEFAULT_THROTTLE_RATES": {"verification_email": "5/hour"},
+}
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "application": {
+            "format": "{levelname} {asctime} {name}: {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "application",
+        },
+    },
+    "loggers": {
+        "users": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
 }
 
 SIMPLE_JWT = {
@@ -67,6 +96,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

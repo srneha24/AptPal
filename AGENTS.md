@@ -102,6 +102,7 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
   - Use PostgreSQL with `psycopg` (binary locally).
   - Expose API endpoints using Django REST framework (`rest_framework`) with CORS configured.
   - Follow PEP 8 and `snake_case` in Python; `camelCase` for TypeScript/React.
+  - Avoid unnecessary `try`/`except` clauses. Never catch broadly with `except Exception` or bare `except:`; when handling an exception is necessary, catch only the specific exception types that can be safely handled.
   - Never expose Django user IDs in responses sent to the frontend or mobile app; client-facing account data must use the `AppUser` object.
   - Use Appwrite for file storage only. Do not use Appwrite Account or other Appwrite services for authentication, email, or SMS.
   - Send email through Django's configured email backend using Brevo SMTP. Phone numbers are optional profile contact information and are not verified; do not implement SMS verification.
@@ -121,12 +122,16 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
 
 ## Notion & Project Tracking Rules
 
+- **API Documentation:** Consult the [AptPal Apidog documentation](https://flobi1oe4c.apidog.io/) for API contracts. If documentation is unavailable or unclear, use the backend implementation as the source of truth.
+
 - **Consult Notion Sources for Insights:** Agents MUST ALWAYS consult the two Notion resources for project requirements, architecture context, and roadmaps:
   1. **AptPal Plans** (Page ID: `41961011-8983-8024-b16f-d3ce6b64e7e2`, [Notion Page](https://app.notion.com/p/4196101189838024b16fd3ce6b64e7e2)) — feature specs, user roles, security checks, design tokens.
   2. **AptPal Roadmap** (Database ID: `41961011-8983-80b6-9737-fb902fc92d36`, [Notion Database](https://app.notion.com/p/41961011898380b69737fb902fc92d36)) — official project tracker and ticket board.
-- **Maintain Roadmap Ticket Statuses:**
-  - Before starting work on any feature or task, **move the corresponding ticket in the AptPal Roadmap database to `In progress`**.
-  - When the task is verified and finished, **move the ticket to `Completed`**.
+- **Roadmap Ticket Workflow:**
+  - For noteworthy or substantial features and tasks, check the AptPal Roadmap before starting. If a matching ticket exists, move it to `In progress`; if none exists, create a ticket and set it to `In progress`.
+  - If the user asks to remember or build a substantial task later, create a ticket with status `Planned` and leave it there until work begins.
+  - Do not create roadmap tickets for minor fixes, simple edits, or routine housekeeping.
+  - When a tracked task is verified and finished, move its ticket to `Completed`.
 - **README Files Policy:** DO NOT modify, generate, or update any `README.md` files (root, `/backend`, `/frontend`, `/site`, `/admin`, `/mobile`) unless the user explicitly instructs you to do so.
 - **Test Execution Policy:** Automated tests (`python manage.py test`, npm test, etc.) MUST ONLY be executed when the user explicitly instructs it. Do not run test suites autonomously during pre-commit checks or development unless requested.
 
@@ -142,3 +147,9 @@ Frontend and mobile MUST remain visually and stylistically synchronized at all t
   4. Admin: `cd admin && npm run build && npm run lint`
   5. Mobile: `cd mobile && npx tsc --noEmit`
 - Commit messages: Imperative and scoped (e.g. `feat(mobile): add rental search filter card`).
+
+## Code Formatting & Output Rules
+
+- **No Long Single-Line Code:** Never write long, minified, or single-line code blocks. All code must be properly formatted with standard indentation and newlines.
+- **Line Length Limits:** Keep individual lines of code reasonably short (ideally under 100-120 characters) by breaking complex statements, JSX elements, and function arguments across multiple lines.
+- **JSX & React Best Practices:** Multi-attribute JSX elements must have each attribute on a new line, and nested children must be properly indented.

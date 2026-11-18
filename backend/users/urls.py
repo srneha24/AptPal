@@ -4,6 +4,7 @@ from .views import (
     AppUserRetrieveUpdateView,
     LoginView,
     ProfilePictureUploadView,
+    ResendVerificationEmailView,
     SignUpView,
     TokenRefreshView,
     VerifyEmailView,
@@ -11,6 +12,11 @@ from .views import (
 
 urlpatterns = [
     path("signup/", SignUpView.as_view(), name="signup"),
+    path(
+        "resend-verification/",
+        ResendVerificationEmailView.as_view(),
+        name="resend-verification",
+    ),
     path("login/", LoginView.as_view(), name="login"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token-refresh"),
     path(

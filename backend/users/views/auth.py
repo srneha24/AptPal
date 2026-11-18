@@ -14,6 +14,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from rest_framework import status
 from rest_framework.permissions import AllowAny
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -21,6 +22,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from ..models import AppUser
 from ..serializers import (
     LoginSerializer,
+    ResendVerificationEmailSerializer,
     SignUpSerializer,
     VerifyEmailSerializer,
 )
@@ -29,44 +31,49 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
+def _send_verification_email(user):
+    uid = urlsafe_base64_encode(force_bytes(user.pk))
+    token = default_token_generator.make_token(user)
+    verification_url = (
+        f"{settings.FRONTEND_URL}/verify-email?"
+        f"{urlencode({'uid': uid, 'token': token})}"
+    )
+    text_message = (
+        f"Hi {user.first_name},\n\n"
+        "Thanks for signing up for AptPal. Verify your email address by "
+        f"opening this link:\n\n{verification_url}\n\n"
+        "If you did not create an AptPal account, you can ignore this email."
+    )
+    html_message = render_to_string(
+        "emails/verify_email.html",
+        {
+            "first_name": user.first_name,
+            "verification_url": verification_url,
+        },
+    )
+    email = EmailMultiAlternatives(
+        subject="Verify your AptPal email",
+        body=text_message,
+        from_email=None,
+        to=[user.email],
+    )
+    email.attach_alternative(html_message, "text/html")
+
+    logo_path = settings.BASE_DIR / "static" / "images" / "logo.png"
+    with logo_path.open("rb") as logo_file:
+        logo = MIMEImage(logo_file.read(), _subtype="png")
+    logo.add_header("Content-ID", "<aptpal-logo>")
+    logo.add_header("Content-Disposition", "inline", filename="aptpal-logo.png")
+    email.attach(logo)
+    email.send(fail_silently=False)
+
+    logger.info(
+        "Sent email verification message to %s (user ID: %s)", user.email, user.pk
+    )
+
+
 class SignUpView(APIView):
     permission_classes = (AllowAny,)
-
-    def _send_verification_email(self, user):
-        uid = urlsafe_base64_encode(force_bytes(user.pk))
-        token = default_token_generator.make_token(user)
-        verification_url = (
-            f"{settings.FRONTEND_URL}/verify-email?"
-            f"{urlencode({'uid': uid, 'token': token})}"
-        )
-        text_message = (
-            f"Hi {user.first_name},\n\n"
-            "Thanks for signing up for AptPal. Verify your email address by "
-            f"opening this link:\n\n{verification_url}\n\n"
-            "If you did not create an AptPal account, you can ignore this email."
-        )
-        html_message = render_to_string(
-            "emails/verify_email.html",
-            {
-                "first_name": user.first_name,
-                "verification_url": verification_url,
-            },
-        )
-        email = EmailMultiAlternatives(
-            subject="Verify your AptPal email",
-            body=text_message,
-            from_email=None,
-            to=[user.email],
-        )
-        email.attach_alternative(html_message, "text/html")
-
-        logo_path = settings.BASE_DIR / "static" / "images" / "logo.png"
-        with logo_path.open("rb") as logo_file:
-            logo = MIMEImage(logo_file.read(), _subtype="png")
-        logo.add_header("Content-ID", "<aptpal-logo>")
-        logo.add_header("Content-Disposition", "inline", filename="aptpal-logo.png")
-        email.attach(logo)
-        email.send(fail_silently=False)
 
     def post(self, request):
         serializer = SignUpSerializer(data=request.data)
@@ -74,7 +81,7 @@ class SignUpView(APIView):
         try:
             with transaction.atomic():
                 user = serializer.save()
-                self._send_verification_email(user)
+                _send_verification_email(user)
         except (SMTPException, OSError):
             return APIResponse(
                 data={},
@@ -90,6 +97,34 @@ class SignUpView(APIView):
             },
             message="Account created. Check your email to verify your address.",
             status_code=status.HTTP_201_CREATED,
+        )
+
+
+class ResendVerificationEmailView(APIView):
+    permission_classes = (AllowAny,)
+    throttle_classes = (ScopedRateThrottle,)
+    throttle_scope = "verification_email"
+
+    def post(self, request):
+        serializer = ResendVerificationEmailSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email_address = serializer.validated_data["email"]
+        user = User.objects.filter(email__iexact=email_address, is_active=True).first()
+
+        if user is not None:
+            profile = AppUser.objects.filter(user=user, email_verified=False).first()
+            if profile is not None:
+                try:
+                    _send_verification_email(user)
+                except (SMTPException, OSError):
+                    logger.exception("Could not resend email verification message")
+
+        return APIResponse(
+            data={},
+            message=(
+                "If an unverified AptPal account exists for that email, "
+                "a fresh verification link will be sent."
+            ),
         )
 
 

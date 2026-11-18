@@ -1,4 +1,10 @@
-from .auth import LoginView, SignUpView, TokenRefreshView, VerifyEmailView  # noqa: F401
+from .auth import (  # noqa: F401
+    LoginView,
+    ResendVerificationEmailView,
+    SignUpView,
+    TokenRefreshView,
+    VerifyEmailView,
+)
 from .profile import (  # noqa: F401
     AppUserRetrieveUpdateView,
     ProfilePictureUploadView,
