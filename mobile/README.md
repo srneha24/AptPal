@@ -1,35 +1,51 @@
 # AptPal Mobile
 
-The cross-platform mobile client for AptPal built with React Native and Expo SDK 58, maintaining full design and functional parity with the web platform.
+The AptPal iOS and Android app, built with React Native and Expo. The app is under development; the current implemented flow includes email and password signup and login, with email verification completed through the web app.
 
-## Tech Stack
+## Tech stack
 
-- **Framework & SDK:** Expo SDK 58 (`~58.0.25`), React Native 0.88.1
-- **Language:** TypeScript (`~6.0.3`)
-- **UI & Theming:**
-  - React Native `StyleSheet` architecture consuming semantic theme colors
-  - Full design system parity with Figma tokens (`Colors.ts`)
-  - Triple-theme support (`light`, `dark`, `system`) with automatic system color scheme detection (`useColorScheme()`)
-- **Interactive Maps:** OpenStreetMap tiles / Map view for rental exploration, location previews, and pin drops
-- **Icons:** `@expo/vector-icons` (mapped to match web's Lucide icons)
-- **Networking & Real-Time:**
-  - Fetch / Axios for backend REST communications
-  - WebSocket client for real-time Django Channels chat
-- **App Configuration:** Expo Managed Workflow (`app.json` with `"userInterfaceStyle": "automatic"`, `"name": "AptPal"`, `"slug": "aptpal"`)
-- **Package Manager:** `npm` (use `npx expo install <package>` for native module compatibility)
+- **Framework:** Expo SDK 58 and React Native 0.88
+- **Language:** TypeScript
+- **Navigation:** Expo Router
+- **Secure session storage:** Expo SecureStore
+- **Icons:** `@expo/vector-icons`
+- **Package manager:** npm
 
-## Core Commands
+## Setup
+
+PowerShell:
+
+```powershell
+npm install
+Copy-Item .env.example .env
+npx expo start
+```
+
+Bash:
 
 ```bash
-# Install dependencies
 npm install
-
-# Install Expo-compatible modules
-npx expo install <package-name>
-
-# Start Expo development server
+cp .env.example .env
 npx expo start
-
-# Type-check
-npx expo tsc --noEmit
 ```
+
+Set `EXPO_PUBLIC_API_BASE_URL` in `.env` to the backend API base URL, including `/api`:
+
+- Android emulator: `http://10.0.2.2:8000/api`
+- iOS simulator: `http://localhost:8000/api`
+- Physical phone: `http://<computer-LAN-IPv4>:8000/api`
+
+For a physical phone, connect it and the development computer to the same network, run Django bound to `0.0.0.0:8000`, and allow port 8000 through the computer's firewall. Restart Expo after changing `.env` so the updated value is loaded.
+
+## Checks
+
+These commands work in PowerShell and Bash:
+
+```shell
+npx tsc --noEmit
+npx expo lint
+```
+
+## Expo configuration
+
+The app uses automatic system light and dark appearance. Install native dependencies with `npx expo install <package-name>` to select versions compatible with the configured Expo SDK.

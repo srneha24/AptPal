@@ -19,18 +19,35 @@ The single-page web client for AptPal, delivering rental discovery, interactive 
 - **Linting & Code Quality:** Oxlint (`oxlint`), TypeScript strict checks
 - **Package Manager:** `npm`
 
-## Core Commands
+## Setup
+
+Requirements: Node.js and npm. The backend API must also be running for API-backed features.
+
+Create a local environment file from the example, install dependencies, and start the Vite dev server.
+
+### PowerShell
+
+```powershell
+Copy-Item .env.example .env
+npm install
+npm run dev
+```
+
+### Bash
 
 ```bash
-# Install dependencies
+cp .env.example .env
 npm install
-
-# Start development server
 npm run dev
+```
 
-# Type-check and production build
+Set `VITE_API_BASE_URL` in `.env` to the backend API base URL, including `/api`. The example uses `http://localhost:8000/api`.
+
+## Checks
+
+These npm commands work in PowerShell and Bash:
+
+```bash
 npm run build
-
-# Run linter
 npm run lint
 ```
